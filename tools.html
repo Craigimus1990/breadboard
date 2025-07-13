@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tools</title>
+    <style>
+        body {
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        .btn {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border: 1px solid #404040;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #404040;
+        }
+        .btn:active {
+            background-color: #505050;
+        }
+        .tool-btn {
+            display: block;
+        }
+        .history-controls {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            gap: 5px;
+        }
+        .history-btn {
+            flex: 1
+        }
+    </style>
+</head>
+<body>
+    <div class="history-controls">
+        <button class="btn history-btn" id="undo">Undo</button>
+        <button class="btn history-btn" id="redo">Redo</button>
+    </div>
+    <button class="btn tool-btn" id="cursor">Cursor</button>
+    <button class="btn tool-btn" id="wire">Wire Tool</button>
+    <button class="btn tool-btn" id="battery">Battery</button>
+    <button class="btn tool-btn" id="resistor">Resistor</button>
+    <button class="btn tool-btn" id="ground">Ground</button>
+    <button class="btn tool-btn" id="mosfet">Switch</button>
+    <script>
+
+        document.querySelectorAll('.history-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.id == "undo") {
+                    window.versions.undo();
+                } else if (btn.id == "redo") {
+                    window.versions.redo();
+                }
+            });
+        });
+        
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                window.versions.changeTool(btn.id);
+            });
+        });
+    </script>
+</body>
+</html>
